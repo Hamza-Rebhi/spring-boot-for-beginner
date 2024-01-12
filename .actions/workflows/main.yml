@@ -2,9 +2,9 @@ name: Build & deploy spring app
 on:
   push:
     branches:
-      - main
+      - master
   jobs:
-    build-eploy:
+    build-deploy:
       name: Build and deploy spring for beginner
       runs-on: ubuntu-latest
       steps:
@@ -25,7 +25,7 @@ on:
           run: mvn -B test package --file pom.xml
 
         - name: Build Docker Image
-          uses: actions/build-push-actions@v2
+          uses: docker/build-push-actions@v2
           with:
             context: .
             dockerfile: Dockerfile
@@ -38,7 +38,7 @@ on:
             username: ${{ secrets.DOCKER_HUB_HAMZAREB}}
             password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN}}
         - name: Push to Docker Hub
-          uses: actions/build-push-actions@v2
+          uses: docker/build-push-actions@v2
           with:
             context: .
             dockerfile: Dockerfile
