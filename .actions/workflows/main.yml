@@ -4,7 +4,7 @@ on:
     branches:
       - main
   jobs:
-    build-deploy:
+    build-eploy:
       name: Build and deploy spring for beginner
       runs-on: ubuntu-latest
       steps:
@@ -21,6 +21,6 @@ on:
         - name: Unit Tests
           run: mvn -B test --file pom.xml
 
-        - name: Build th e application
+        - name: Build the application
           run: mvn -B test package --file pom.xml
 
